@@ -13,13 +13,16 @@ export function addText(options = {}) {
   const vw = Canvas.getWidth();
   const vh = Canvas.getHeight();
 
+  // Offset each new text so they don't stack on top of each other
+  const offset = (idCounter % 5) * 20;
+
   const data = {
     id: 'txt-' + (++idCounter),
     type: 'text',
     name: 'Text ' + idCounter,
     content: options.content || 'Double-click to edit',
-    x: options.x ?? Math.round(vw / 2 - 80),
-    y: options.y ?? Math.round(vh / 2 - 12),
+    x: options.x ?? Math.round(vw / 2 - 80 + offset),
+    y: options.y ?? Math.round(vh / 2 - 12 + offset),
     width: 0,
     height: 0,
     fontFamily: options.fontFamily || 'Inter',
@@ -164,6 +167,11 @@ export function setTextState(newTexts) {
   });
   texts = newTexts;
   texts.forEach(t => renderText(t));
+  // Update idCounter to avoid duplicate IDs
+  texts.forEach(t => {
+    const num = parseInt(t.id.replace('txt-', ''), 10);
+    if (num >= idCounter) idCounter = num + 1;
+  });
 }
 
 function getDefaultTextColor() {

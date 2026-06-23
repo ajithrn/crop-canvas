@@ -20,7 +20,9 @@ CropCanvas lets you define a fixed-size canvas, drop images onto it, add text an
 - **Custom color picker** - inline hue/saturation picker with swatches
 - **Undo/Redo** - full history stack (50 states)
 - **Autosave** - work persists across page refreshes
-- **Export** - PNG or JPEG with custom filename
+- **Clipboard paste** - Ctrl+V to paste images from clipboard
+- **Layer reorder** - drag-and-drop or up/down buttons, rename via double-click
+- **Export** - PNG or JPEG with custom filename, respects layer order
 - **Center-origin rulers** - 0 at canvas center
 - **Zoom** - 25%-400% with Ctrl+scroll and fit-to-screen
 - **Light/Dark mode** - theme toggle with persistence
@@ -78,6 +80,7 @@ Open `http://localhost:5173` in your browser.
 | `Ctrl+Z` | Undo |
 | `Ctrl+Shift+Z` | Redo |
 | `Ctrl+S` | Save |
+| `Ctrl+V` | Paste image from clipboard |
 | `Delete` / `Backspace` | Delete selected |
 | `Arrow keys` | Nudge 1px |
 | `Shift + Arrow` | Nudge 10px |

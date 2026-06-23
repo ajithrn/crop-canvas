@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Layers List
+   Layers List with drag-to-reorder
    ========================================================================== */
 .layers-list {
   display: flex;
@@ -7,16 +7,70 @@
   gap: 2px;
 }
 
+/* Header with move buttons */
+.layers-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 8px 8px;
+  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: 4px;
+}
+
+.layers-title {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.layers-header-actions {
+  display: flex;
+  gap: 2px;
+}
+
+.layer-move-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-muted);
+  border-radius: var(--radius-xs);
+  transition: all var(--transition-fast);
+}
+
+.layer-move-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+.layer-move-btn:hover:not(:disabled) {
+  color: var(--text-primary);
+  background: var(--bg-hover);
+}
+
+.layer-move-btn:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+/* Layer items */
 .layer-item {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 6px 8px;
+  gap: 6px;
+  padding: 5px 8px;
   border-radius: var(--radius-sm);
   background: transparent;
   border: 1px solid transparent;
   cursor: pointer;
   transition: all var(--transition-fast);
+  user-select: none;
 }
 
 .layer-item:hover {
@@ -28,10 +82,34 @@
   border-color: var(--accent-subtle);
 }
 
+/* Drag handle */
+.layer-drag-handle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  color: var(--border-strong);
+  cursor: grab;
+  flex-shrink: 0;
+  opacity: 0.5;
+  transition: opacity var(--transition-fast);
+}
+
+.layer-item:hover .layer-drag-handle {
+  opacity: 1;
+}
+
+.layer-drag-handle:active {
+  cursor: grabbing;
+}
+
+/* Layer icon */
 .layer-icon {
   display: flex;
   align-items: center;
   color: var(--text-muted);
+  flex-shrink: 0;
 }
 
 .layer-item.selected .layer-icon {
@@ -43,6 +121,7 @@
   height: 14px;
 }
 
+/* Layer name */
 .layer-name {
   flex: 1;
   font-size: 11px;
@@ -53,6 +132,7 @@
   white-space: nowrap;
 }
 
+/* Visibility button */
 .layer-visibility {
   display: flex;
   align-items: center;
@@ -65,6 +145,7 @@
   color: var(--text-muted);
   border-radius: var(--radius-xs);
   transition: all var(--transition-fast);
+  flex-shrink: 0;
 }
 
 .layer-visibility svg {
@@ -79,4 +160,29 @@
 
 .layer-visibility.hidden {
   opacity: 0.3;
+}
+
+/* Drag states */
+.layer-item.dragging {
+  opacity: 0.4;
+}
+
+.layer-item.drag-over {
+  border-top: 2px solid var(--accent);
+  padding-top: 3px;
+}
+
+/* Inline rename input */
+.layer-name-input {
+  flex: 1;
+  min-width: 0;
+  padding: 2px 4px;
+  font-size: 11px;
+  font-weight: 500;
+  font-family: var(--font-sans);
+  color: var(--text-primary);
+  background: var(--bg-input);
+  border: 1px solid var(--border-focus);
+  border-radius: var(--radius-xs);
+  outline: none;
 }

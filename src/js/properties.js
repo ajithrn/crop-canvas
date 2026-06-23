@@ -21,6 +21,20 @@ export function bindProperties() {
   });
 
   document.getElementById('prop-elem-delete').addEventListener('click', deleteSelected);
+
+  // Layer rename from properties header
+  const titleInput = document.getElementById('prop-elem-title');
+  titleInput.addEventListener('input', () => {
+    const id = getSelectedId();
+    if (!id) return;
+    const data = getElementData(id);
+    if (data) data.name = titleInput.value.trim() || data.type;
+  });
+  titleInput.addEventListener('blur', () => pushHistory());
+  titleInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') { e.preventDefault(); titleInput.blur(); }
+  });
+
   document.getElementById('prop-elem-rot-reset').addEventListener('click', () => {
     document.getElementById('prop-elem-rot').value = 0;
     applyProps();
@@ -151,7 +165,7 @@ export function updatePropertiesPanel() {
   const data = getElementData(selectedId);
   if (!data) return;
 
-  document.getElementById('prop-elem-title').textContent = (data.name || data.type).toUpperCase();
+  document.getElementById('prop-elem-title').value = data.name || data.type;
   document.getElementById('prop-elem-x').value = Math.round(data.x);
   document.getElementById('prop-elem-y').value = Math.round(data.y);
   document.getElementById('prop-elem-rot').value = Math.round(data.rotation || 0);

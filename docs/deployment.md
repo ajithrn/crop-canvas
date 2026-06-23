@@ -70,7 +70,7 @@ cp -r dist/* /var/www/html/
 
 - Fully static - no server-side code
 - `public/CNAME` copied to `dist/` automatically by Vite
-- Total size: ~32KB HTML + 25KB CSS + 44KB JS (gzips to ~17KB total)
+- Total size: ~34KB HTML + 28KB CSS + 47KB JS (gzips to ~20KB total)
 
 ## Troubleshooting
 

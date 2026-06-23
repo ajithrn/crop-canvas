@@ -171,15 +171,15 @@ function bindWorkspace() {
   ws.addEventListener('mousemove', (e) => {
     const pos = Canvas.getMouseOnCanvas(e.clientX, e.clientY);
     document.getElementById('status-mouse').textContent = `${pos.x}, ${pos.y}`;
-    if (getIsDragging()) { handleDrag(e); updatePropertiesPanel(); }
-    if (getIsResizing()) { handleResize(e); updatePropertiesPanel(); }
+    if (getIsDragging()) { e.preventDefault(); handleDrag(e); updatePropertiesPanel(); }
+    if (getIsResizing()) { e.preventDefault(); handleResize(e); updatePropertiesPanel(); }
   });
 
   ws.addEventListener('mousedown', (e) => {
     const wrapper = e.target.closest('.element-wrapper');
     const handle = e.target.closest('.resize-handle');
-    if (handle && getSelectedId()) { startResize(e, handle.dataset.dir); return; }
-    if (wrapper) { selectElement(wrapper.dataset.id); startDrag(e); return; }
+    if (handle && getSelectedId()) { e.preventDefault(); startResize(e, handle.dataset.dir); return; }
+    if (wrapper) { e.preventDefault(); selectElement(wrapper.dataset.id); startDrag(e); return; }
     if (e.target === ws || e.target.id === 'canvas-area' ||
         e.target.id === 'viewport' || e.target.id === 'viewport-content') {
       deselectAll();
@@ -192,6 +192,27 @@ function bindWorkspace() {
     const wrapper = e.target.closest('.element-wrapper');
     if (wrapper && wrapper.dataset.type === 'text') {
       TextManager.startEditing(wrapper.dataset.id);
+    }
+  });
+
+  // Paste image from clipboard (Ctrl+V)
+  document.addEventListener('paste', (e) => {
+    if (e.target.matches('input, select, [contenteditable="true"]')) return;
+    const items = e.clipboardData?.items;
+    if (!items) return;
+    for (const item of items) {
+      if (item.type.startsWith('image/')) {
+        e.preventDefault();
+        const file = item.getAsFile();
+        if (file) {
+          ImageManager.loadImage(file).then(data => {
+            selectElement(data.id);
+            pushHistory();
+            updateLayers();
+          });
+        }
+        break;
+      }
     }
   });
 }
@@ -226,7 +247,13 @@ function bindKeyboard() {
     if ((e.ctrlKey || e.metaKey) && e.key === 'z' && !e.shiftKey) { e.preventDefault(); undo(); }
     if ((e.ctrlKey || e.metaKey) && e.key === 'z' && e.shiftKey) { e.preventDefault(); redo(); }
     if ((e.ctrlKey || e.metaKey) && e.key === 'y') { e.preventDefault(); redo(); }
-    if ((e.ctrlKey || e.metaKey) && e.key === 's') { e.preventDefault(); forceSave(); }
+    if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+      e.preventDefault();
+      forceSave();
+      const saveBtn = document.getElementById('save-btn');
+      saveBtn.classList.add('saved');
+      setTimeout(() => saveBtn.classList.remove('saved'), 1000);
+    }
     if (e.key === 'Delete' || e.key === 'Backspace') { if (getSelectedId()) { e.preventDefault(); deleteSelected(); updateLayers(); } }
     if (e.key === 'v' || e.key === 'V') setTool('select');
     if (e.key === 't' || e.key === 'T') setTool('text');
@@ -279,7 +306,13 @@ function bindCanvasSettings() {
 
 // --- Save & Reset ---
 function bindSaveReset() {
-  document.getElementById('save-btn').addEventListener('click', forceSave);
+  const saveBtn = document.getElementById('save-btn');
+  saveBtn.addEventListener('click', () => {
+    forceSave();
+    // Visual feedback
+    saveBtn.classList.add('saved');
+    setTimeout(() => saveBtn.classList.remove('saved'), 1000);
+  });
 
   document.getElementById('reset-btn').addEventListener('click', () => {
     if (!confirm('Reset canvas? This will clear all elements and start fresh.')) return;

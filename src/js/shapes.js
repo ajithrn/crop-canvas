@@ -42,17 +42,19 @@ export function addShape(type, options = {}) {
 }
 
 function getShapeDefaults(type, vw, vh) {
+  // Offset each new shape so they don't stack perfectly
+  const offset = (idCounter % 5) * 20;
   switch (type) {
     case 'rect':
-      return { x: Math.round(vw / 2 - 75), y: Math.round(vh / 2 - 50), width: 150, height: 100 };
+      return { x: Math.round(vw / 2 - 75 + offset), y: Math.round(vh / 2 - 50 + offset), width: 150, height: 100 };
     case 'circle':
-      return { x: Math.round(vw / 2 - 50), y: Math.round(vh / 2 - 50), width: 100, height: 100 };
+      return { x: Math.round(vw / 2 - 50 + offset), y: Math.round(vh / 2 - 50 + offset), width: 100, height: 100 };
     case 'line':
-      return { x: Math.round(vw / 2 - 75), y: Math.round(vh / 2), width: 150, height: 0 };
+      return { x: Math.round(vw / 2 - 75 + offset), y: Math.round(vh / 2 + offset), width: 150, height: 0 };
     case 'arrow':
-      return { x: Math.round(vw / 2 - 75), y: Math.round(vh / 2), width: 150, height: 0 };
+      return { x: Math.round(vw / 2 - 75 + offset), y: Math.round(vh / 2 + offset), width: 150, height: 0 };
     default:
-      return { x: 50, y: 50, width: 100, height: 100 };
+      return { x: 50 + offset, y: 50 + offset, width: 100, height: 100 };
   }
 }
 
@@ -237,4 +239,9 @@ export function setShapeState(newShapes) {
   });
   shapes = newShapes;
   shapes.forEach(s => renderShape(s));
+  // Update idCounter to avoid duplicate IDs
+  shapes.forEach(s => {
+    const num = parseInt(s.id.replace('shp-', ''), 10);
+    if (num >= idCounter) idCounter = num + 1;
+  });
 }

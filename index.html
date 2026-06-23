@@ -191,7 +191,7 @@
 
             <div id="element-properties" hidden>
               <div class="prop-header">
-                <span id="prop-elem-title" class="prop-elem-type">Image</span>
+                <input type="text" id="prop-elem-title" class="prop-elem-title-input" value="Image" spellcheck="false" aria-label="Layer name">
                 <button id="prop-elem-delete" class="prop-delete-btn" title="Delete">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M3 6h18M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
                 </button>
@@ -362,7 +362,7 @@
       <span class="status-dot"></span>
       <span id="status-selection">No selection</span>
       <span class="status-spacer"></span>
-      <span class="status-version">v2.1.0</span>
+      <span class="status-version">v2.2.0</span>
       <span class="status-dot"></span>
       <span class="status-credit">Built by <a href="https://ajithrn.com" target="_blank" rel="noopener">ajith_rn</a></span>
       <span class="status-dot"></span>
@@ -426,11 +426,16 @@
 
           <div class="help-section">
             <h3>Layers Panel</h3>
-            <p>The Layers tab lists all elements on the canvas.</p>
+            <p>The Layers tab lists all elements on the canvas in stacking order (top layer draws in front).</p>
             <ul class="help-tools-list">
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0z"/><circle cx="12" cy="12" r="3"/></svg> <span><strong>Visibility toggle</strong> - click the eye icon to show/hide a layer. Hidden layers are not exported.</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0z"/><circle cx="12" cy="12" r="3"/></svg> <span><strong>Visibility</strong> - click the eye icon to show/hide a layer. Hidden layers are not exported.</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg> <span><strong>Reorder</strong> - use the up/down arrows to move the selected layer forward or backward.</span></li>
             </ul>
-            <p>Click any layer name to select it on the canvas.</p>
+            <ul>
+              <li><strong>Drag to reorder</strong> - grab the dot handle on the left of any layer and drag it to a new position.</li>
+              <li><strong>Rename</strong> - double-click a layer name to rename it. You can also edit the name in the Properties panel header.</li>
+            </ul>
+            <p>Click any layer to select it on the canvas. Export draws layers in this exact order.</p>
           </div>
 
           <div class="help-section">
@@ -447,6 +452,7 @@
             <ul>
               <li><kbd>Ctrl+Z</kbd> Undo / <kbd>Ctrl+Shift+Z</kbd> Redo</li>
               <li><kbd>Ctrl+S</kbd> - save</li>
+              <li><kbd>Ctrl+V</kbd> - paste image from clipboard</li>
               <li><kbd>Delete</kbd> or <kbd>Backspace</kbd> - delete selected element</li>
               <li><kbd>Arrow keys</kbd> - nudge 1px (<kbd>Shift</kbd> + arrow = 10px)</li>
               <li><kbd>Ctrl+Scroll</kbd> - zoom</li>

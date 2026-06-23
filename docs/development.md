@@ -55,7 +55,7 @@ npm run preview  # preview the build
 | `selection.js` | Select, deselect, delete, drag, resize, nudge |
 | `history.js` | Undo/redo stack, autosave to localStorage, restore, reset |
 | `properties.js` | Panel input bindings, apply changes, update display |
-| `layers.js` | Render layer list with icons and visibility toggles |
+| `layers.js` | Render layer list, drag-to-reorder, rename, visibility toggles |
 | `colorpicker.js` | Custom inline color picker (HSV + hex + swatches) |
 
 ## CSS Organization
@@ -70,7 +70,7 @@ npm run preview  # preview the build
 | `dropzone.css` | Drop overlay inside viewport |
 | `panel.css` | Right panel shell, tabs, empty states |
 | `properties.css` | Form inputs, selects, color fields, style buttons |
-| `layers.css` | Layer list items |
+| `layers.css` | Layer list items, drag reorder, move buttons, rename input |
 | `export.css` | Export section UI |
 | `elements.css` | Element wrappers, resize handles, shapes |
 | `colorpicker.css` | Color picker popover |

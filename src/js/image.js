@@ -133,4 +133,9 @@ export function setImageState(newImages) {
   });
   images = newImages;
   images.forEach(img => renderImage(img));
+  // Update idCounter to avoid duplicate IDs
+  images.forEach(img => {
+    const num = parseInt(img.id.replace('img-', ''), 10);
+    if (num >= idCounter) idCounter = num + 1;
+  });
 }

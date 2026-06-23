@@ -45,7 +45,7 @@ CSS is split into 13 files, imported in order by `main.js`:
 | `dropzone.css` | Image drop zone overlay |
 | `panel.css` | Right panel container, tabs, empty states |
 | `properties.css` | Property form fields, inputs, selects, color fields |
-| `layers.css` | Layer list items |
+| `layers.css` | Layer list items, drag-to-reorder, rename input |
 | `export.css` | Export section (range slider, download button) |
 | `elements.css` | Canvas element wrappers, resize handles, text/image/shape elements |
 | `colorpicker.css` | Custom color picker popover |
@@ -58,13 +58,15 @@ CSS is split into 13 files, imported in order by `main.js`:
 2. `app.js` delegates to selection.js for interaction, then to element modules
 3. Each element module (image, text, shapes) manages its own data array and DOM rendering
 4. State changes trigger `pushHistory()` in history.js for undo/redo and autosave
-5. Export reads all element data and renders to an offscreen canvas
+5. Layer order is determined by DOM order in viewport-content (later = on top)
+6. Export reads all visible elements sorted by DOM index, draws sequentially to respect stacking
 
 ## State Management
 
 - No framework - state is held in module-scoped variables/arrays
 - History - JSON snapshots of all element arrays, max 50 states
 - Autosave - debounced localStorage persistence after every state change
+- ID counters - each module tracks its own idCounter, updated on state restore to prevent duplicate IDs
 - Theme - persisted via localStorage
 - Canvas size - held in canvas module, reflected in topbar inputs
 
@@ -102,3 +104,6 @@ CSS is split into 13 files, imported in order by `main.js`:
 5. **Center-origin coordinates** - rulers and mouse position use 0,0 at viewport center.
 6. **Modular CSS** - no preprocessor needed. Plain CSS split by component.
 7. **Autosave** - debounced localStorage save so work is never lost.
+8. **DOM order = layer order** - element stacking is controlled by DOM position, not z-index values. Reordering layers moves DOM nodes directly.
+9. **Sequential export** - elements are drawn one at a time in DOM order to guarantee correct stacking in the output file.
+10. **Clipboard integration** - paste event listener handles image data from clipboard for quick image insertion.

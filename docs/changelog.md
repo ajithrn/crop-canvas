@@ -4,6 +4,23 @@ All notable changes to CropCanvas are documented here.
 
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.2.0] - 2026-06-23
+
+### Added
+- **Clipboard paste** - Ctrl+V to paste images from clipboard (screenshots, copied images)
+- **Layer reordering** - drag-and-drop layers to reorder, plus move up/down buttons for selected layer
+- **Layer rename** - double-click layer name in list, or edit directly in Properties panel header
+- **Save feedback** - save button highlights briefly to confirm save completed
+- **Version display** - version number shown in status bar footer
+
+### Fixed
+- **Duplicate ID bug** - idCounter now updates after restoring from localStorage, preventing elements from sharing IDs and moving together
+- **Export layer order** - export now draws elements sequentially (not concurrently) to respect exact layer stacking
+- **Export DOM index** - fixed getDomIndex to only count element-wrapper siblings (ignores grid/dropzone divs)
+- **Pasted images not visible** - fixed drop zone z-index blocking pasted content
+- **Element drag** - added preventDefault on mousedown/mousemove to prevent browser native drag and scroll interference
+- **New element overlap** - new texts and shapes now offset by 20px each so they don't stack on the same position
+
 ## [2.1.0] - 2026-06-23
 
 ### Added

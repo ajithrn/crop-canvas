@@ -165,6 +165,11 @@
   color: var(--text-secondary);
 }
 
+.topbar-btn.saved {
+  color: var(--accent);
+  background: var(--accent-subtle);
+}
+
 /* Zoom Display */
 .zoom-display {
   font-family: var(--font-mono);

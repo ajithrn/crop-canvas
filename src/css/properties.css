@@ -18,6 +18,31 @@
   letter-spacing: 0.03em;
 }
 
+.prop-elem-title-input {
+  flex: 1;
+  min-width: 0;
+  padding: 4px 6px;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-xs);
+  outline: none;
+  transition: all var(--transition-fast);
+}
+
+.prop-elem-title-input:hover {
+  background: var(--bg-input);
+  border-color: var(--border-default);
+}
+
+.prop-elem-title-input:focus {
+  background: var(--bg-input);
+  border-color: var(--border-focus);
+}
+
 .prop-delete-btn {
   display: flex;
   align-items: center;

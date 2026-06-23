@@ -40,14 +40,18 @@ export function exportCanvas(format = 'png', quality = 0.92, filename = 'cropcan
 
   allElements.sort((a, b) => a.zIndex - b.zIndex);
 
-  const drawPromises = allElements.map(el => {
-    if (el.type === 'image') return drawImage(ctx, el);
-    if (el.type === 'text') { drawText(ctx, el); return Promise.resolve(); }
-    if (el.type === 'shape') { drawShape(ctx, el); return Promise.resolve(); }
-    return Promise.resolve();
+  // Draw sequentially to respect layer order
+  let chain = Promise.resolve();
+  allElements.forEach(el => {
+    chain = chain.then(() => {
+      if (el.type === 'image') return drawImage(ctx, el);
+      if (el.type === 'text') { drawText(ctx, el); return Promise.resolve(); }
+      if (el.type === 'shape') { drawShape(ctx, el); return Promise.resolve(); }
+      return Promise.resolve();
+    });
   });
 
-  return Promise.all(drawPromises).then(() => {
+  return chain.then(() => {
     const mimeType = format === 'jpeg' ? 'image/jpeg' : 'image/png';
     const q = format === 'jpeg' ? quality : undefined;
     const ext = format === 'jpeg' ? 'jpg' : 'png';
@@ -117,7 +121,8 @@ function drawText(ctx, data) {
 function getDomIndex(id) {
   const el = document.querySelector(`[data-id="${id}"]`);
   if (!el) return 0;
-  return Array.from(el.parentElement.children).indexOf(el);
+  const siblings = Array.from(el.parentElement.querySelectorAll('.element-wrapper'));
+  return siblings.indexOf(el);
 }
 
 function drawShape(ctx, data) {
