@@ -1,0 +1,93 @@
+/* ==========================================================================
+   Workspace — Canvas area, rulers, viewport
+   ========================================================================== */
+#workspace-container {
+  flex: 1;
+  display: grid;
+  grid-template-columns: var(--ruler-size) 1fr;
+  grid-template-rows: var(--ruler-size) 1fr;
+  background: var(--bg-workspace);
+  overflow: hidden;
+  position: relative;
+}
+
+#ruler-corner {
+  background: var(--ruler-bg);
+  border-right: 1px solid var(--border-default);
+  border-bottom: 1px solid var(--border-default);
+  z-index: 20;
+}
+
+.ruler {
+  z-index: 20;
+}
+
+.ruler-horizontal {
+  grid-column: 2;
+  grid-row: 1;
+  width: 100%;
+  height: var(--ruler-size);
+  background: var(--ruler-bg);
+  border-bottom: 1px solid var(--border-default);
+}
+
+.ruler-vertical {
+  grid-column: 1;
+  grid-row: 2;
+  width: var(--ruler-size);
+  height: 100%;
+  background: var(--ruler-bg);
+  border-right: 1px solid var(--border-default);
+}
+
+#workspace {
+  grid-column: 2;
+  grid-row: 2;
+  overflow: auto;
+  position: relative;
+  outline: none;
+  background: var(--bg-workspace);
+  background-image:
+    linear-gradient(to right, var(--grid-line-faded) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line-faded) 1px, transparent 1px);
+  background-size: 50px 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#canvas-area {
+  position: relative;
+  flex-shrink: 0;
+}
+
+#viewport {
+  position: absolute;
+  background: var(--bg-viewport);
+  box-shadow: var(--shadow-lg);
+  z-index: 10;
+}
+
+#viewport-grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+#viewport-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+#overflow-mask {
+  position: absolute;
+  pointer-events: none;
+  z-index: 15;
+}

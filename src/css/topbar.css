@@ -1,0 +1,186 @@
+/* ==========================================================================
+   Top Bar — Grouped controls layout
+   ========================================================================== */
+#topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--topbar-height);
+  padding: 0 12px;
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-default);
+  z-index: 100;
+  flex-shrink: 0;
+}
+
+.topbar-section {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.topbar-controls {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  user-select: none;
+}
+
+.logo-icon {
+  width: 18px;
+  height: 18px;
+  color: var(--accent);
+}
+
+.logo-text {
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+/* Control Groups */
+.control-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 8px;
+}
+
+.control-divider {
+  width: 1px;
+  height: 20px;
+  background: var(--border-default);
+}
+
+/* Canvas Size */
+.size-input-group {
+  display: flex;
+  align-items: center;
+  background: var(--bg-input);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  padding: 0 8px;
+  height: 32px;
+  transition: border-color var(--transition-fast);
+}
+
+.size-input-group:focus-within {
+  border-color: var(--border-focus);
+}
+
+.size-input-group input {
+  width: 48px;
+  padding: 6px 0;
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  outline: none;
+  -moz-appearance: textfield;
+}
+
+.size-input-group input::-webkit-inner-spin-button,
+.size-input-group input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+.size-unit {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-left: 2px;
+}
+
+.size-separator {
+  color: var(--text-muted);
+  font-size: 12px;
+  user-select: none;
+  margin: 0 2px;
+}
+
+.presets-select {
+  padding: 6px 22px 6px 8px;
+  height: 32px;
+  background: var(--bg-input);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 500;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 6px center;
+}
+
+/* Topbar Buttons */
+.topbar-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.topbar-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.topbar-btn:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.topbar-btn:active {
+  transform: scale(0.94);
+}
+
+.topbar-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.topbar-btn:disabled:hover {
+  background: transparent;
+  color: var(--text-secondary);
+}
+
+/* Zoom Display */
+.zoom-display {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  min-width: 46px;
+  text-align: center;
+  padding: 5px 6px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: var(--radius-xs);
+}
+
+.zoom-display:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}

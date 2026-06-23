@@ -1,0 +1,120 @@
+/* ==========================================================================
+   Utilities — Status bar, animations, theme icons, focus, responsive
+   ========================================================================== */
+
+/* Status Bar */
+#statusbar {
+  display: flex;
+  align-items: center;
+  height: var(--statusbar-height);
+  padding: 0 12px;
+  background: var(--bg-surface);
+  border-top: 1px solid var(--border-default);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-muted);
+  gap: 8px;
+  user-select: none;
+}
+
+.status-dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--border-strong);
+}
+
+.status-spacer {
+  flex: 1;
+}
+
+.status-credit {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+.status-credit a {
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+
+.status-credit a:hover {
+  color: var(--text-primary);
+}
+
+.status-bmc {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: 2px 6px;
+  border-radius: var(--radius-xs);
+  transition: all var(--transition-fast);
+}
+
+.status-bmc:hover {
+  color: #b8860b;
+}
+
+[data-theme="dark"] .status-bmc:hover {
+  color: #ffdd00;
+}
+
+.status-link {
+  display: inline-flex;
+  align-items: center;
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: 2px;
+  border-radius: var(--radius-xs);
+  transition: color var(--transition-fast);
+}
+
+.status-link:hover {
+  color: var(--text-primary);
+}
+
+.status-bmc svg {
+  flex-shrink: 0;
+}
+
+/* Theme Toggle Icons */
+[data-theme="dark"] .icon-sun { display: block; }
+[data-theme="dark"] .icon-moon { display: none; }
+[data-theme="light"] .icon-sun { display: none; }
+[data-theme="light"] .icon-moon { display: block; }
+
+/* Animations */
+.element-wrapper.animate-in {
+  animation: elementIn 200ms ease-out;
+}
+
+@keyframes elementIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Focus States */
+.topbar-btn:focus-visible,
+.rail-btn:focus-visible,
+.panel-tab:focus-visible,
+.btn-download:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .logo-text { display: none; }
+  .control-group:has(.size-input-group) { display: none; }
+  :root { --panel-width: 240px; }
+}
+
+@media (max-width: 600px) {
+  #right-panel { display: none; }
+  :root { --rail-width: 44px; }
+}

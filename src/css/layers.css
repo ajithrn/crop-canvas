@@ -1,0 +1,82 @@
+/* ==========================================================================
+   Layers List
+   ========================================================================== */
+.layers-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.layer-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.layer-item:hover {
+  background: var(--bg-hover);
+}
+
+.layer-item.selected {
+  background: var(--accent-subtle);
+  border-color: var(--accent-subtle);
+}
+
+.layer-icon {
+  display: flex;
+  align-items: center;
+  color: var(--text-muted);
+}
+
+.layer-item.selected .layer-icon {
+  color: var(--accent);
+}
+
+.layer-icon svg {
+  width: 14px;
+  height: 14px;
+}
+
+.layer-name {
+  flex: 1;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.layer-visibility {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-muted);
+  border-radius: var(--radius-xs);
+  transition: all var(--transition-fast);
+}
+
+.layer-visibility svg {
+  width: 13px;
+  height: 13px;
+}
+
+.layer-visibility:hover {
+  color: var(--text-primary);
+  background: var(--bg-hover);
+}
+
+.layer-visibility.hidden {
+  opacity: 0.3;
+}

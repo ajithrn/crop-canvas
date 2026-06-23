@@ -1,0 +1,101 @@
+/* ==========================================================================
+   Right Panel — Container, toggle, tabs
+   ========================================================================== */
+#right-panel {
+  width: var(--panel-width);
+  flex-shrink: 0;
+  display: flex;
+  background: var(--bg-surface);
+  border-left: 1px solid var(--border-default);
+  z-index: 30;
+  overflow: hidden;
+}
+
+.panel-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-width: 0;
+}
+
+/* Panel Tabs */
+.panel-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--border-default);
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.panel-tab {
+  flex: 1;
+  padding: 10px 8px;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-muted);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all var(--transition-fast);
+}
+
+.panel-tab:hover {
+  color: var(--text-secondary);
+}
+
+.panel-tab.active {
+  color: var(--text-primary);
+  border-bottom-color: var(--accent);
+}
+
+/* Panel Content */
+.panel-content {
+  display: none;
+  padding: 12px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.panel-content.active {
+  display: block;
+}
+
+/* Empty States */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 48px 16px;
+  gap: 8px;
+}
+
+.empty-state-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  background: var(--bg-hover);
+  margin-bottom: 4px;
+}
+
+.empty-state-icon svg {
+  width: 20px;
+  height: 20px;
+  color: var(--text-muted);
+}
+
+.empty-state-text {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.empty-state-hint {
+  font-size: 11px;
+  color: var(--text-muted);
+}

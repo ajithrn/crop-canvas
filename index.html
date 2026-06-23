@@ -1,25 +1,24 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="CropCanvas — A lightweight, browser-based image editor for precise canvas-cropped exports.">
-  <meta property="og:title" content="CropCanvas — Precision Image Editor">
-  <meta property="og:description" content="CropCanvas — A lightweight, browser-based image editor for precise canvas-cropped exports.">
+  <meta name="description" content="CropCanvas - A lightweight, browser-based image editor for precise canvas-cropped exports.">
+  <meta property="og:title" content="CropCanvas - Precision Image Editor">
+  <meta property="og:description" content="A lightweight, browser-based image editor for precise canvas-cropped exports.">
   <meta property="og:type" content="website">
-  <title>CropCanvas — Precision Image Editor</title>
+  <title>CropCanvas</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%20fill='none'%20stroke='%237C4DFF'%20stroke-width='2.5'%20stroke-linecap='round'%20stroke-linejoin='round'%3E%3Crect%20x='3'%20y='3'%20width='18'%20height='18'%20rx='2'/%3E%3Cpath%20d='M9%203v18M3%209h18'/%3E%3C/svg%3E">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236366f1' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='3' width='18' height='18' rx='2'/%3E%3Cpath d='M9 3v18M3 9h18'/%3E%3C/svg%3E">
 </head>
 <body>
   <div id="app">
     <!-- Top Bar -->
     <header id="topbar">
-      <div class="topbar-left">
-        <div class="logo" id="logo">
+      <div class="topbar-section">
+        <div class="logo">
           <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <rect x="3" y="3" width="18" height="18" rx="2"/>
             <path d="M9 3v18M3 9h18"/>
@@ -27,111 +26,110 @@
           <span class="logo-text">CropCanvas</span>
         </div>
       </div>
-      <div class="topbar-center">
-        <button id="undo-btn" class="btn btn-icon" title="Undo (Ctrl+Z)" disabled aria-label="Undo">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7v6h6"/><path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13"/></svg>
-        </button>
-        <button id="redo-btn" class="btn btn-icon" title="Redo (Ctrl+Shift+Z)" disabled aria-label="Redo">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 7v6h-6"/><path d="M3 17a9 9 0 0 1 9-9 9 9 0 0 1 6 2.3l3 2.7"/></svg>
-        </button>
-        <div class="toolbar-divider"></div>
-        <button id="zoom-out-btn" class="btn btn-icon" title="Zoom out" aria-label="Zoom out">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" x2="16.65" y1="21" y2="16.65"/><line x1="8" x2="14" y1="11" y2="11"/></svg>
-        </button>
-        <button id="zoom-level" class="btn btn-ghost zoom-display" title="Reset zoom">100%</button>
-        <button id="zoom-in-btn" class="btn btn-icon" title="Zoom in" aria-label="Zoom in">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" x2="16.65" y1="21" y2="16.65"/><line x1="11" x2="11" y1="8" y2="14"/><line x1="8" x2="14" y1="11" y2="11"/></svg>
-        </button>
-        <button id="zoom-fit-btn" class="btn btn-icon" title="Fit to screen" aria-label="Fit to screen">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"/></svg>
-        </button>
+
+      <div class="topbar-section topbar-controls">
+        <!-- Undo/Redo -->
+        <div class="control-group">
+          <button id="undo-btn" class="topbar-btn" title="Undo (Ctrl+Z)" disabled aria-label="Undo">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7v6h6"/><path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13"/></svg>
+          </button>
+          <button id="redo-btn" class="topbar-btn" title="Redo (Ctrl+Shift+Z)" disabled aria-label="Redo">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 7v6h-6"/><path d="M3 17a9 9 0 0 1 9-9 9 9 0 0 1 6 2.3l3 2.7"/></svg>
+          </button>
+        </div>
+
+        <div class="control-divider"></div>
+
+        <!-- Canvas Size -->
+        <div class="control-group">
+          <div class="size-input-group">
+            <input type="number" id="canvas-width" value="500" min="1" max="8000" aria-label="Canvas width">
+            <span class="size-unit">W</span>
+          </div>
+          <span class="size-separator">&times;</span>
+          <div class="size-input-group">
+            <input type="number" id="canvas-height" value="500" min="1" max="8000" aria-label="Canvas height">
+            <span class="size-unit">H</span>
+          </div>
+          <select id="canvas-presets" class="presets-select" aria-label="Canvas presets">
+            <option value="">Preset</option>
+            <option value="500x500" selected>500 &times; 500</option>
+            <option value="1080x1080">1080 &times; 1080</option>
+            <option value="1200x630">1200 &times; 630</option>
+            <option value="1920x1080">1920 &times; 1080</option>
+            <option value="1080x1920">1080 &times; 1920</option>
+            <option value="800x600">800 &times; 600</option>
+          </select>
+        </div>
+
+        <div class="control-divider"></div>
+
+        <!-- Zoom -->
+        <div class="control-group">
+          <button id="zoom-out-btn" class="topbar-btn" title="Zoom out" aria-label="Zoom out">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" x2="19" y1="12" y2="12"/></svg>
+          </button>
+          <button id="zoom-level" class="zoom-display" title="Reset to 100%" aria-label="Zoom level">100%</button>
+          <button id="zoom-in-btn" class="topbar-btn" title="Zoom in" aria-label="Zoom in">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="5" y2="19"/><line x1="5" x2="19" y1="12" y2="12"/></svg>
+          </button>
+          <button id="zoom-fit-btn" class="topbar-btn" title="Fit to screen" aria-label="Fit to screen">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+          </button>
+        </div>
       </div>
-      <div class="topbar-right">
-        <button id="theme-toggle" class="btn btn-icon" title="Toggle theme" aria-label="Toggle theme">
-          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
-          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+
+      <div class="topbar-section">
+        <button id="save-btn" class="topbar-btn" title="Save (Ctrl+S)" aria-label="Save">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
         </button>
-        <button id="export-btn" class="btn btn-accent btn-sm">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M12 3v12M17 8l-5-5-5 5"/></svg>
-          Export
+        <button id="reset-btn" class="topbar-btn" title="Reset canvas" aria-label="Reset canvas">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
         </button>
       </div>
     </header>
 
     <!-- Main Content -->
     <main id="main-content">
-      <!-- Left Toolbox -->
-      <aside id="toolbox">
-        <!-- Canvas Config (moved to left sidebar) -->
-        <div class="toolbox-section canvas-config-section">
-          <span class="toolbox-label">Canvas Design</span>
-          <div class="canvas-inputs-container">
-            <div class="input-with-label">
-              <label for="canvas-width">Width</label>
-              <input type="number" id="canvas-width" value="500" min="1" max="8000">
-            </div>
-            <div class="input-with-label">
-              <label for="canvas-height">Height</label>
-              <input type="number" id="canvas-height" value="500" min="1" max="8000">
-            </div>
-          </div>
-          <div class="canvas-action-row">
-            <button id="apply-size-btn" class="btn btn-primary btn-sm btn-full">Apply Size</button>
-            <div class="presets-dropdown">
-              <button id="presets-btn" class="btn btn-ghost btn-sm" title="Presets" aria-label="Presets">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="m6 9 6 6 6-6"/></svg>
-              </button>
-              <div id="presets-menu" class="dropdown-menu">
-                <button class="dropdown-item" data-width="1080" data-height="1080">Instagram (1:1) — 1080x1080</button>
-                <button class="dropdown-item" data-width="1200" data-height="630">OG Cover (1.91:1) — 1200x630</button>
-                <button class="dropdown-item" data-width="1920" data-height="1080">HD Landscape — 1920x1080</button>
-                <button class="dropdown-item" data-width="1080" data-height="1920">Story / Portrait — 1080x1920</button>
-                <button class="dropdown-item" data-width="800" data-height="600">Standard Web — 800x600</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="toolbox-section">
-          <span class="toolbox-label">Tools</span>
-          <div class="tools-grid">
-            <button id="tool-select" class="tool-btn active" title="Select Tool (V)" data-tool="select">
-              <svg class="tool-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="m3 3 7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/>
-              </svg>
-              <span class="tool-label">Select</span>
-            </button>
-            <button id="tool-text" class="tool-btn" title="Add Text (T)" data-tool="text">
-              <svg class="tool-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M4 7V4h16v3M9 20h6M12 4v16"/>
-              </svg>
-              <span class="tool-label">Text</span>
-            </button>
-            <button id="tool-image" class="tool-btn" title="Add Image (I)" data-tool="image">
-              <svg class="tool-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
-                <circle cx="9" cy="9" r="2"/>
-                <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
-              </svg>
-              <span class="tool-label">Image</span>
-            </button>
-          </div>
-          <input type="file" id="image-file-input" accept="image/png,image/jpeg,image/webp,image/svg+xml" hidden>
-        </div>
-
-        <div class="toolbox-section">
-          <span class="toolbox-label">Modify</span>
-          <button id="delete-selected-btn" class="tool-btn" title="Delete Selected (Del)" disabled>
-            <svg class="tool-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M3 6h18M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2M10 11v6M14 11v6"/>
-            </svg>
-            <span class="tool-label">Delete</span>
+      <!-- Left Tool Rail -->
+      <aside id="tool-rail">
+        <div class="tool-rail-top">
+          <button id="tool-select" class="rail-btn active" title="Select (V)" data-tool="select" aria-label="Select tool">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 3 7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/></svg>
+          </button>
+          <button id="tool-text" class="rail-btn" title="Text (T)" data-tool="text" aria-label="Text tool">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V4h16v3M9 20h6M12 4v16"/></svg>
+          </button>
+          <button id="tool-image" class="rail-btn" title="Image (I)" data-tool="image" aria-label="Image tool">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+          </button>
+          <div class="rail-divider"></div>
+          <button id="tool-rect" class="rail-btn" title="Rectangle (R)" data-tool="rect" aria-label="Rectangle tool">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/></svg>
+          </button>
+          <button id="tool-circle" class="rail-btn" title="Circle (C)" data-tool="circle" aria-label="Circle tool">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/></svg>
+          </button>
+          <button id="tool-line" class="rail-btn" title="Line (L)" data-tool="line" aria-label="Line tool">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="20" x2="20" y2="4"/></svg>
+          </button>
+          <button id="tool-arrow" class="rail-btn" title="Arrow (A)" data-tool="arrow" aria-label="Arrow tool">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </button>
         </div>
+        <div class="tool-rail-bottom">
+          <button id="theme-toggle" class="rail-btn" title="Toggle theme" aria-label="Toggle theme">
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+          </button>
+          <button id="help-btn" class="rail-btn" title="Help & Shortcuts" aria-label="Help">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg>
+          </button>
+        </div>
+        <input type="file" id="image-file-input" accept="image/png,image/jpeg,image/webp,image/svg+xml" hidden>
       </aside>
 
-      <div class="resizer" id="resizer-left"></div>
-
+      <!-- Workspace -->
       <div id="workspace-container">
         <div id="ruler-corner"></div>
         <canvas id="ruler-h" class="ruler ruler-horizontal"></canvas>
@@ -139,236 +137,327 @@
         <div id="workspace" tabindex="0">
           <div id="canvas-area">
             <div id="viewport">
+              <div id="viewport-grid"></div>
               <div id="viewport-content"></div>
+              <div id="drop-zone" class="drop-zone">
+                <div class="drop-zone-content">
+                  <div class="drop-zone-icon-wrapper">
+                    <svg class="drop-zone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                      <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
+                      <circle cx="9" cy="9" r="2"/>
+                      <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
+                    </svg>
+                  </div>
+                  <h2 class="drop-zone-title">Drop an image to start</h2>
+                  <p class="drop-zone-subtitle">or press <kbd>I</kbd> to browse files</p>
+                </div>
+              </div>
             </div>
             <div id="overflow-mask"></div>
           </div>
         </div>
-        
-        <div id="drop-zone" class="drop-zone">
-          <div class="drop-zone-content">
-            <svg class="drop-zone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
-              <circle cx="9" cy="9" r="2"/>
-              <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
-            </svg>
-            <p class="drop-zone-title">Drop your image here</p>
-            <p class="drop-zone-subtitle">or choose the Image tool in the left panel</p>
-          </div>
-        </div>
       </div>
 
-      <div class="resizer" id="resizer-right"></div>
-
-      <!-- Right Properties Panel -->
-      <aside id="properties-panel">
-        <div class="panel-tabs">
-          <button id="tab-layers" class="panel-tab active" data-tab="layers">Layers</button>
-          <button id="tab-properties" class="panel-tab" data-tab="properties">Properties</button>
-        </div>
-        <div id="layers-content" class="panel-content active">
-          <div id="layers-list" class="layers-list">
-            <div class="empty-layers">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m9 12 2 2 4-4"/></svg>
-              <p>No elements added yet</p>
-              <p class="subtle">Add an image or add text to get started</p>
-            </div>
-          </div>
-        </div>
-        <div id="properties-content" class="panel-content">
-          <div id="no-selection" class="empty-properties">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
-            <p>No element selected</p>
-            <p class="subtle">Select any layer to customize its values</p>
+      <!-- Right Panel (always visible, no toggle) -->
+      <aside id="right-panel">
+        <div class="panel-body">
+          <div class="panel-tabs">
+            <button class="panel-tab active" data-tab="properties">Properties</button>
+            <button class="panel-tab" data-tab="layers">Layers</button>
+            <button class="panel-tab" data-tab="export">Export</button>
           </div>
 
-          <!-- Combined Properties Panel -->
-          <div id="element-properties" hidden>
-            
-            <div class="prop-header">
-              <h2 id="prop-elem-title" class="prop-title">PRODUCT NAME</h2>
-              <button id="prop-elem-delete" class="btn-text-danger">DELETE</button>
+          <!-- Properties -->
+          <div id="properties-content" class="panel-content active">
+            <div id="no-selection" class="empty-state">
+              <div class="empty-state-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m3 3 7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/><path d="m13 13 6 6"/></svg>
+              </div>
+              <p class="empty-state-text">Select an element to edit</p>
+              <p class="empty-state-hint">Click any layer on the canvas</p>
             </div>
 
-            <!-- Align Section -->
-            <div class="prop-section">
-              <span class="prop-section-label">Align</span>
-              <div class="align-grid">
-                <button class="btn-icon-small" title="Align Left"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="4" x2="4" y2="20"/><line x1="8" y1="12" x2="20" y2="12"/><line x1="8" y1="8" x2="16" y2="8"/><line x1="8" y1="16" x2="16" y2="16"/></svg></button>
-                <button class="btn-icon-small" title="Align Center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="4" x2="12" y2="20"/><line x1="6" y1="12" x2="18" y2="12"/><line x1="8" y1="8" x2="16" y2="8"/><line x1="8" y1="16" x2="16" y2="16"/></svg></button>
-                <button class="btn-icon-small" title="Align Right"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="20" y1="4" x2="20" y2="20"/><line x1="4" y1="12" x2="16" y2="12"/><line x1="8" y1="8" x2="16" y2="8"/><line x1="8" y1="16" x2="16" y2="16"/></svg></button>
-                <button class="btn-icon-small" title="Align Top"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="4" x2="20" y2="4"/><line x1="12" y1="8" x2="12" y2="20"/><line x1="8" y1="8" x2="8" y2="16"/><line x1="16" y1="8" x2="16" y2="16"/></svg></button>
-                <button class="btn-icon-small" title="Align Middle"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="12" x2="20" y2="12"/><line x1="12" y1="6" x2="12" y2="18"/><line x1="8" y1="8" x2="8" y2="16"/><line x1="16" y1="8" x2="16" y2="16"/></svg></button>
-                <button class="btn-icon-small" title="Align Bottom"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="20" x2="20" y2="20"/><line x1="12" y1="4" x2="12" y2="16"/><line x1="8" y1="8" x2="8" y2="16"/><line x1="16" y1="8" x2="16" y2="16"/></svg></button>
-              </div>
-            </div>
-
-            <div class="prop-divider"></div>
-
-            <!-- Position & Size -->
-            <div class="prop-section">
-              <span class="prop-section-label">POSITION & SIZE</span>
-              
-              <div class="prop-grid-2">
-                <div class="prop-field">
-                  <label>Left (px)</label>
-                  <div class="input-wrap"><input type="number" id="prop-elem-x" class="prop-input"><div class="input-stepper">↕</div></div>
-                </div>
-                <div class="prop-field">
-                  <label>Top (px)</label>
-                  <div class="input-wrap"><input type="number" id="prop-elem-y" class="prop-input"><div class="input-stepper">↕</div></div>
-                </div>
-                <div class="prop-field" id="prop-w-field">
-                  <label>Width (px)</label>
-                  <div class="input-wrap"><input type="number" id="prop-elem-w" class="prop-input"><div class="input-stepper">↕</div></div>
-                </div>
-                <div class="prop-field" id="prop-h-field">
-                  <label>Height (px)</label>
-                  <div class="input-wrap"><input type="number" id="prop-elem-h" class="prop-input"><div class="input-stepper">↕</div></div>
-                </div>
+            <div id="element-properties" hidden>
+              <div class="prop-header">
+                <span id="prop-elem-title" class="prop-elem-type">Image</span>
+                <button id="prop-elem-delete" class="prop-delete-btn" title="Delete">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M3 6h18M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
+                </button>
               </div>
 
-              <div class="prop-field mt-2">
-                <label>Rotation (°)</label>
-                <div class="rotation-row">
-                  <div class="input-wrap flex-1"><input type="number" id="prop-elem-rot" class="prop-input"><div class="input-stepper">↕</div></div>
-                  <button id="prop-elem-rot-reset" class="btn-icon-small" title="Reset Rotation">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <div class="prop-divider"></div>
-
-            <!-- Appearance -->
-            <div class="prop-section">
-              <span class="prop-section-label">APPEARANCE</span>
-              <div class="prop-grid-2">
-                <div class="prop-field">
-                  <label>Opacity (%)</label>
-                  <div class="input-wrap"><input type="number" id="prop-elem-opacity" class="prop-input" min="0" max="100"><div class="input-stepper">↕</div></div>
-                </div>
-              </div>
-            </div>
-
-            <div id="prop-text-section" hidden>
-              <div class="prop-divider"></div>
-              <!-- Typography -->
               <div class="prop-section">
-                <span class="prop-section-label">TYPOGRAPHY</span>
-                
-                <div class="prop-field">
-                  <label>Content</label>
-                  <input type="text" id="prop-text-content" class="prop-input" placeholder="Type here...">
+                <div class="prop-section-header"><span class="prop-section-label">Transform</span></div>
+                <div class="prop-grid">
+                  <div class="prop-field"><label for="prop-elem-x">X</label><input type="number" id="prop-elem-x" class="prop-input"></div>
+                  <div class="prop-field"><label for="prop-elem-y">Y</label><input type="number" id="prop-elem-y" class="prop-input"></div>
+                  <div class="prop-field" id="prop-w-field"><label for="prop-elem-w">W</label><input type="number" id="prop-elem-w" class="prop-input"></div>
+                  <div class="prop-field" id="prop-h-field"><label for="prop-elem-h">H</label><input type="number" id="prop-elem-h" class="prop-input"></div>
                 </div>
-
-                <div class="prop-field mt-2">
-                  <label>Font</label>
-                  <select id="prop-text-font" class="prop-select">
-                    <option value="Inter">Inter</option>
-                    <option value="Outfit">Outfit</option>
-                    <option value="Arial">Arial</option>
-                    <option value="Roboto Condensed">Roboto Condensed</option>
-                    <option value="JetBrains Mono">JetBrains Mono</option>
-                  </select>
-                </div>
-
-                <div class="prop-grid-2 mt-2">
-                  <div class="prop-field">
-                    <label>Size (px)</label>
-                    <div class="input-wrap"><input type="number" id="prop-text-size" class="prop-input"><div class="input-stepper">↕</div></div>
+                <div class="prop-row">
+                  <div class="prop-field prop-field-wide">
+                    <label for="prop-elem-rot">Rotation</label>
+                    <div class="prop-field-with-action">
+                      <input type="number" id="prop-elem-rot" class="prop-input">
+                      <button id="prop-elem-rot-reset" class="prop-inline-btn" title="Reset">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+                      </button>
+                    </div>
                   </div>
+                  <div class="prop-field prop-field-wide">
+                    <label for="prop-elem-opacity">Opacity</label>
+                    <input type="number" id="prop-elem-opacity" class="prop-input" min="0" max="100">
+                  </div>
+                </div>
+              </div>
+
+              <div id="prop-text-section" hidden>
+                <div class="prop-section">
+                  <div class="prop-section-header"><span class="prop-section-label">Typography</span></div>
+                  <div class="prop-field"><label for="prop-text-content">Content</label><input type="text" id="prop-text-content" class="prop-input prop-input-text" placeholder="Enter text..."></div>
                   <div class="prop-field">
-                    <label>Weight</label>
-                    <select id="prop-text-weight" class="prop-select">
-                      <option value="normal">Rg</option>
-                      <option value="bold">Bd</option>
+                    <label for="prop-text-font">Font</label>
+                    <select id="prop-text-font" class="prop-select">
+                      <option value="Inter">Inter</option>
+                      <option value="Arial">Arial</option>
+                      <option value="Georgia">Georgia</option>
+                      <option value="JetBrains Mono">JetBrains Mono</option>
+                      <option value="Times New Roman">Times New Roman</option>
                     </select>
                   </div>
-                  
+                  <div class="prop-grid">
+                    <div class="prop-field"><label for="prop-text-size">Size</label><input type="number" id="prop-text-size" class="prop-input" min="8" max="400"></div>
+                    <div class="prop-field"><label for="prop-text-weight">Weight</label><select id="prop-text-weight" class="prop-select"><option value="normal">Regular</option><option value="bold">Bold</option></select></div>
+                  </div>
+                  <div class="prop-grid">
+                    <div class="prop-field"><label for="prop-text-lh">Line H</label><input type="number" id="prop-text-lh" class="prop-input" step="0.1"></div>
+                    <div class="prop-field"><label for="prop-text-spacing">Spacing</label><input type="number" id="prop-text-spacing" class="prop-input" step="0.1"></div>
+                  </div>
                   <div class="prop-field">
                     <label>Color</label>
-                    <div class="color-picker-wrapper small">
-                      <input type="color" id="prop-text-color" class="prop-color">
+                    <div class="color-field"><input type="color" id="prop-text-color" class="prop-color-input" value="#ffffff"><span class="color-hex" id="prop-text-color-hex">#ffffff</span></div>
+                  </div>
+                  <div class="prop-field">
+                    <label>Style</label>
+                    <div class="style-buttons">
+                      <button id="prop-text-bold" class="style-btn" title="Bold">B</button>
+                      <button id="prop-text-italic" class="style-btn style-btn-italic" title="Italic">I</button>
+                      <button id="prop-text-underline" class="style-btn" title="Underline">U</button>
                     </div>
                   </div>
                   <div class="prop-field">
-                    <label>Line Height</label>
-                    <div class="input-wrap"><input type="number" id="prop-text-lh" class="prop-input" step="0.1"><div class="input-stepper">↕</div></div>
+                    <label>Align</label>
+                    <div class="style-buttons">
+                      <button id="prop-text-align-left" class="style-btn style-btn-align active" data-align="left" title="Align left">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="14" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                      </button>
+                      <button id="prop-text-align-center" class="style-btn style-btn-align" data-align="center" title="Align center">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="7" y1="12" x2="17" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                      </button>
+                      <button id="prop-text-align-right" class="style-btn style-btn-align" data-align="right" title="Align right">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="10" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                      </button>
+                    </div>
                   </div>
-                  
+                </div>
+              </div>
+
+              <div id="prop-shape-section" hidden>
+                <div class="prop-section">
+                  <div class="prop-section-header"><span class="prop-section-label">Shape</span></div>
                   <div class="prop-field">
-                    <label>Spacing</label>
-                    <div class="input-wrap"><input type="number" id="prop-text-spacing" class="prop-input" step="0.1"><div class="input-stepper">↕</div></div>
+                    <label>Fill</label>
+                    <div class="color-field"><input type="color" id="prop-shape-fill" class="prop-color-input" value="#6366f1"><span class="color-hex" id="prop-shape-fill-hex">#6366f1</span></div>
+                  </div>
+                  <div class="prop-grid">
+                    <div class="prop-field">
+                      <label>Stroke</label>
+                      <div class="color-field"><input type="color" id="prop-shape-stroke" class="prop-color-input" value="#000000"><span class="color-hex" id="prop-shape-stroke-hex">#000000</span></div>
+                    </div>
+                    <div class="prop-field">
+                      <label>Stroke W</label>
+                      <input type="number" id="prop-shape-stroke-width" class="prop-input" min="0" max="50" value="2">
+                    </div>
+                  </div>
+                  <div class="prop-field" id="prop-shape-radius-field">
+                    <label>Corner Radius</label>
+                    <input type="number" id="prop-shape-radius" class="prop-input" min="0" max="200" value="0">
                   </div>
                 </div>
+              </div>
 
-                <div class="style-toggles mt-2">
-                  <div class="align-grid minimal">
-                    <button class="btn-icon-small"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
-                    <button class="btn-icon-small"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="6" y1="12" x2="18" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
-                    <button class="btn-icon-small"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="9" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
-                  </div>
-                  <div class="align-grid minimal">
-                    <button id="prop-text-bold" class="btn-icon-small" style="font-weight: bold; font-family: serif;">B</button>
-                    <button id="prop-text-italic" class="btn-icon-small" style="font-style: italic; font-family: serif;">I</button>
-                    <button id="prop-text-underline" class="btn-icon-small" style="text-decoration: underline; font-family: serif;">U</button>
-                  </div>
+            </div>
+
+            <!-- Global Canvas Settings (collapsible card) -->
+            <div class="settings-card">
+              <button class="settings-card-toggle" id="canvas-settings-toggle" aria-expanded="false">
+                <span class="settings-card-title">Canvas Settings</span>
+                <svg class="settings-card-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+              <div class="settings-card-body" id="canvas-settings-body" hidden>
+                <div class="prop-field">
+                  <label>Background</label>
+                  <div class="color-field"><input type="color" id="prop-canvas-bg" class="prop-color-input" value="#ffffff"><span class="color-hex" id="prop-canvas-bg-hex">#ffffff</span></div>
+                </div>
+                <div class="prop-field">
+                  <label>Show Grid</label>
+                  <label class="toggle-switch">
+                    <input type="checkbox" id="toggle-grid" checked>
+                    <span class="toggle-track"></span>
+                  </label>
                 </div>
               </div>
             </div>
           </div>
-          </div>
 
-          <div id="canvas-properties" class="property-group" hidden>
-            <h3 class="property-group-title">Canvas Design</h3>
-            <div class="property-row vertical-field">
-              <label>Background Fill</label>
-              <input type="color" id="prop-canvas-bg" class="prop-color" value="#ffffff">
-            </div>
-          </div>
-        </div>
-
-        <div id="export-content" class="panel-content">
-          <div class="export-options">
-            <h3 class="property-group-title">Download Canvas</h3>
-            <div class="property-row vertical-field">
-              <label>Format</label>
-              <select id="export-format" class="prop-select">
-                <option value="png">PNG Image</option>
-                <option value="jpeg">JPEG Image</option>
-              </select>
-            </div>
-            <div id="jpeg-quality-row" class="property-row vertical-range" hidden>
-              <label>Image Quality</label>
-              <div class="range-container">
-                <input type="range" id="export-quality" class="prop-range" min="50" max="100" value="92">
-                <span id="export-quality-val" class="range-value">92%</span>
+          <!-- Layers -->
+          <div id="layers-content" class="panel-content">
+            <div id="layers-list" class="layers-list">
+              <div class="empty-state">
+                <div class="empty-state-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/></svg>
+                </div>
+                <p class="empty-state-text">No layers yet</p>
+                <p class="empty-state-hint">Add images or text to build your composition</p>
               </div>
             </div>
-            <button id="export-download-btn" class="btn btn-accent btn-full">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10 12 15 17 10M12 15V3"/></svg>
-              Download File
-            </button>
+          </div>
+
+          <!-- Export -->
+          <div id="export-content" class="panel-content">
+            <div class="export-section">
+              <div class="prop-section-header"><span class="prop-section-label">Export Settings</span></div>
+              <div class="prop-field"><label for="export-format">Format</label><select id="export-format" class="prop-select"><option value="png">PNG (lossless)</option><option value="jpeg">JPEG (lossy)</option></select></div>
+              <div id="jpeg-quality-row" class="prop-field" hidden><label for="export-quality">Quality</label><div class="range-field"><input type="range" id="export-quality" class="prop-range" min="50" max="100" value="92"><span id="export-quality-val" class="range-value">92%</span></div></div>
+              <div class="prop-field"><label for="export-filename">Filename</label><input type="text" id="export-filename" class="prop-input prop-input-text" value="cropcanvas-export"></div>
+              <div class="export-info"><span id="export-dimensions"></span></div>
+              <button id="export-download-btn" class="btn-download">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                Download
+              </button>
+            </div>
           </div>
         </div>
       </aside>
     </main>
+
+    <!-- Status Bar -->
     <footer id="statusbar">
-      <span id="status-canvas-size">Canvas: 1200 × 630</span>
-      <span class="status-divider">/</span>
-      <span id="status-zoom">Zoom: 100%</span>
-      <span class="status-divider">/</span>
-      <span id="status-mouse">Mouse: 0, 0</span>
-      <span class="status-divider">/</span>
+      <span id="status-canvas-size">500 × 500</span>
+      <span class="status-dot"></span>
+      <span id="status-zoom">100%</span>
+      <span class="status-dot"></span>
+      <span id="status-mouse">0, 0</span>
+      <span class="status-dot"></span>
       <span id="status-selection">No selection</span>
+      <span class="status-spacer"></span>
+      <span class="status-credit">Built by <a href="https://ajithrn.com" target="_blank" rel="noopener">ajith_rn</a></span>
+      <span class="status-dot"></span>
+      <a href="https://buymeacoffee.com/ajithrn" target="_blank" rel="noopener" class="status-bmc" title="Buy me a coffee">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" x2="6" y1="2" y2="4"/><line x1="10" x2="10" y1="2" y2="4"/><line x1="14" x2="14" y1="2" y2="4"/></svg>
+        <span>Buy me a coffee</span>
+      </a>
+      <span class="status-dot"></span>
+      <a href="https://github.com/ajithrn/cropcanvas" target="_blank" rel="noopener" class="status-link" title="View on GitHub">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+      </a>
     </footer>
+
+    <!-- Help Popup -->
+    <div id="help-overlay" class="help-overlay" hidden>
+      <div class="help-popup">
+        <div class="help-header">
+          <h2>How to use CropCanvas</h2>
+          <button id="help-close" class="help-close" aria-label="Close help">&times;</button>
+        </div>
+        <div class="help-body">
+          <div class="help-section">
+            <p class="help-intro-text">Set your canvas size using the W and H inputs in the toolbar, or pick a preset. Then add images, text, or shapes to your canvas.</p>
+          </div>
+
+          <div class="help-section">
+            <h3>Tools</h3>
+            <ul class="help-tools-list">
+              <li><kbd>V</kbd> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 3 7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/></svg> <span><strong>Select</strong> - click to select, drag to move, corner handles to resize</span></li>
+              <li><kbd>T</kbd> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V4h16v3M9 20h6M12 4v16"/></svg> <span><strong>Text</strong> - adds editable text. Double-click to edit inline</span></li>
+              <li><kbd>I</kbd> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg> <span><strong>Image</strong> - opens file picker. You can also drag-drop images onto the canvas</span></li>
+              <li><kbd>R</kbd> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/></svg> <span><strong>Rectangle</strong> - adds a rectangle with fill, stroke, and corner radius</span></li>
+              <li><kbd>C</kbd> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/></svg> <span><strong>Circle</strong> - adds a circle or ellipse</span></li>
+              <li><kbd>L</kbd> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="20" x2="20" y2="4"/></svg> <span><strong>Line</strong> - adds a straight line</span></li>
+              <li><kbd>A</kbd> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg> <span><strong>Arrow</strong> - adds a line with an arrowhead</span></li>
+            </ul>
+          </div>
+
+          <div class="help-section">
+            <h3>Zoom &amp; Navigation</h3>
+            <ul class="help-tools-list">
+              <li><kbd>Ctrl+Scroll</kbd> <span>Zoom in and out with mouse wheel</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" x2="19" y1="12" y2="12"/></svg> <span><strong>Zoom out</strong> - decrease zoom level by 10%</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="5" y2="19"/><line x1="5" x2="19" y1="12" y2="12"/></svg> <span><strong>Zoom in</strong> - increase zoom level by 10%</span></li>
+              <li><span class="help-inline-btn">100%</span> <span><strong>Reset zoom</strong> - click the percentage to go back to 100%</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg> <span><strong>Fit to screen</strong> - auto-zoom to fill the available workspace</span></li>
+            </ul>
+            <p>The rulers show 0 at the center of the canvas and count outward in both directions.</p>
+          </div>
+
+          <div class="help-section">
+            <h3>Properties Panel</h3>
+            <p>When you select an element, the Properties tab shows editable values:</p>
+            <ul>
+              <li><strong>Transform</strong> - X, Y position, Width, Height, Rotation, Opacity</li>
+              <li><strong>Typography</strong> (text only) - font, size, weight, color, bold/italic/underline, alignment</li>
+              <li><strong>Shape</strong> (shapes only) - fill color, stroke color, stroke width, corner radius</li>
+            </ul>
+            <p>Changes apply instantly as you type or pick colors.</p>
+          </div>
+
+          <div class="help-section">
+            <h3>Layers Panel</h3>
+            <p>The Layers tab lists all elements on the canvas.</p>
+            <ul class="help-tools-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0z"/><circle cx="12" cy="12" r="3"/></svg> <span><strong>Visibility toggle</strong> - click the eye icon to show/hide a layer. Hidden layers are not exported.</span></li>
+            </ul>
+            <p>Click any layer name to select it on the canvas.</p>
+          </div>
+
+          <div class="help-section">
+            <h3>Canvas Settings</h3>
+            <p>At the bottom of the Properties tab, expand "Canvas Settings" to:</p>
+            <ul>
+              <li>Change the canvas background color</li>
+              <li>Toggle the grid overlay on or off</li>
+            </ul>
+          </div>
+
+          <div class="help-section">
+            <h3>Keyboard Shortcuts</h3>
+            <ul>
+              <li><kbd>Ctrl+Z</kbd> Undo / <kbd>Ctrl+Shift+Z</kbd> Redo</li>
+              <li><kbd>Ctrl+S</kbd> - save</li>
+              <li><kbd>Delete</kbd> or <kbd>Backspace</kbd> - delete selected element</li>
+              <li><kbd>Arrow keys</kbd> - nudge 1px (<kbd>Shift</kbd> + arrow = 10px)</li>
+              <li><kbd>Ctrl+Scroll</kbd> - zoom</li>
+            </ul>
+          </div>
+
+          <div class="help-section">
+            <h3>Export</h3>
+            <p>Switch to the Export tab in the right panel. Choose PNG or JPEG, set a filename, and click Download. Only content inside the canvas viewport is exported. Overflow content is excluded.</p>
+          </div>
+
+          <div class="help-section">
+            <h3>Tips</h3>
+            <ul class="help-tools-list">
+              <li><span>Your work is auto-saved. Refresh the page and your canvas will be restored.</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg> <span>Save button (top right) or <kbd>Ctrl+S</kbd> to save manually.</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg> <span>Reset button (top right) to clear everything and start over.</span></li>
+              <li><span>The sun/moon icon at the bottom of the tool rail toggles dark and light theme.</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <script src="js/canvas.js"></script>
-  <script src="js/image.js"></script>
-  <script src="js/text.js"></script>
-  <script src="js/export.js"></script>
-  <script src="js/app.js"></script>
+
+  <script type="module" src="/src/main.js"></script>
 </body>
 </html>

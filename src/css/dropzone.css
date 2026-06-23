@@ -1,0 +1,84 @@
+/* ==========================================================================
+   Drop Zone
+   ========================================================================== */
+.drop-zone {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--transition-smooth);
+}
+
+.drop-zone.active {
+  opacity: 1;
+  pointer-events: auto;
+  background: rgba(99, 102, 241, 0.06);
+  backdrop-filter: blur(4px);
+}
+
+.drop-zone.show-welcome {
+  opacity: 1;
+  pointer-events: none;
+}
+
+.drop-zone-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 40px 32px;
+}
+
+.drop-zone-icon-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-lg);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  margin-bottom: 16px;
+}
+
+.drop-zone-icon {
+  width: 28px;
+  height: 28px;
+  color: var(--text-muted);
+}
+
+.drop-zone.active .drop-zone-icon {
+  color: var(--accent);
+}
+
+.drop-zone.active .drop-zone-icon-wrapper {
+  border-color: var(--accent);
+  background: var(--accent-subtle);
+}
+
+.drop-zone-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+.drop-zone-subtitle {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.drop-zone-subtitle kbd {
+  display: inline-block;
+  padding: 1px 5px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-strong);
+  border-radius: 3px;
+  color: var(--text-secondary);
+}
