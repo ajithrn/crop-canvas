@@ -4,6 +4,17 @@ All notable changes to CropCanvas are documented here.
 
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.1.0] - 2026-06-23
+
+### Added
+- **OG image** - custom SVG with minimal app UI mockup (tool rail, canvas, properties panel, logo as selected element)
+- **App icons** - SVG favicon, apple-touch-icon, 192/512 icons for PWA
+- **Web manifest** - manifest.json with theme color and icons
+- **Twitter/OG meta** - full Open Graph and Twitter Card meta tags for link previews
+
+### Changed
+- **OG site name** - displays "CropCanvas" instead of domain in link previews
+
 ## [2.0.0] - 2026-06-23
 
 Complete rewrite with modular architecture, new UI, and expanded toolset.

@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#0a0a0b"/>
+  <!-- Workspace grid -->
+  <defs>
+    <pattern id="wgrid" width="50" height="50" patternUnits="userSpaceOnUse">
+      <path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+    </pattern>
+    <pattern id="cgrid" width="50" height="50" patternUnits="userSpaceOnUse">
+      <path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#wgrid)"/>
+
+  <!-- Left Tool Rail (minimal) -->
+  <rect x="0" y="0" width="48" height="630" fill="#141416"/>
+  <line x1="48" y1="0" x2="48" y2="630" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <!-- Active indicator -->
+  <rect x="0" y="14" width="3" height="16" rx="1" fill="#6366f1"/>
+  <!-- Tool dots -->
+  <circle cx="24" cy="22" r="3" fill="#6366f1" opacity="0.8"/>
+  <circle cx="24" cy="52" r="3" fill="rgba(255,255,255,0.2)"/>
+  <circle cx="24" cy="82" r="3" fill="rgba(255,255,255,0.2)"/>
+  <circle cx="24" cy="120" r="3" fill="rgba(255,255,255,0.15)"/>
+  <circle cx="24" cy="150" r="3" fill="rgba(255,255,255,0.15)"/>
+  <circle cx="24" cy="180" r="3" fill="rgba(255,255,255,0.15)"/>
+  <circle cx="24" cy="210" r="3" fill="rgba(255,255,255,0.15)"/>
+
+  <!-- Right Panel (minimal) -->
+  <rect x="940" y="0" width="260" height="630" fill="#141416"/>
+  <line x1="940" y1="0" x2="940" y2="630" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <!-- Tab bar -->
+  <line x1="940" y1="36" x2="1200" y2="36" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <!-- Active tab indicator -->
+  <rect x="960" y="33" width="40" height="3" rx="1" fill="#6366f1"/>
+  <!-- Field placeholders -->
+  <rect x="960" y="56" width="50" height="6" rx="2" fill="rgba(255,255,255,0.06)"/>
+  <rect x="960" y="76" width="100" height="20" rx="4" fill="#111113" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <rect x="1070" y="76" width="100" height="20" rx="4" fill="#111113" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <rect x="960" y="106" width="100" height="20" rx="4" fill="#111113" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <rect x="1070" y="106" width="100" height="20" rx="4" fill="#111113" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <rect x="960" y="146" width="40" height="6" rx="2" fill="rgba(255,255,255,0.06)"/>
+  <rect x="960" y="166" width="210" height="20" rx="4" fill="#111113" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <!-- Color swatch -->
+  <rect x="964" y="170" width="12" height="12" rx="2" fill="#6366f1"/>
+
+  <!-- Canvas viewport -->
+  <rect x="260" y="60" width="470" height="510" rx="3" fill="#1e1e22" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <rect x="260" y="60" width="470" height="510" rx="3" fill="url(#cgrid)"/>
+
+  <!-- Logo icon - center stage -->
+  <g transform="translate(405, 210)">
+    <rect x="0" y="0" width="180" height="180" rx="28" fill="none" stroke="#6366f1" stroke-width="14"/>
+    <line x1="60" y1="0" x2="60" y2="180" stroke="#6366f1" stroke-width="10" stroke-linecap="round"/>
+    <line x1="0" y1="60" x2="180" y2="60" stroke="#6366f1" stroke-width="10" stroke-linecap="round"/>
+  </g>
+
+  <!-- Selection handles -->
+  <rect x="400" y="205" width="10" height="10" rx="2" fill="#fff" stroke="#6366f1" stroke-width="2"/>
+  <rect x="580" y="205" width="10" height="10" rx="2" fill="#fff" stroke="#6366f1" stroke-width="2"/>
+  <rect x="400" y="385" width="10" height="10" rx="2" fill="#fff" stroke="#6366f1" stroke-width="2"/>
+  <rect x="580" y="385" width="10" height="10" rx="2" fill="#fff" stroke="#6366f1" stroke-width="2"/>
+  <rect x="402" y="207" width="186" height="186" fill="none" stroke="#6366f1" stroke-width="1.5" opacity="0.5"/>
+
+  <!-- App name -->
+  <text x="495" y="440" font-family="Inter, -apple-system, sans-serif" font-size="30" font-weight="700" fill="#f4f4f5" text-anchor="middle" letter-spacing="-0.5">CropCanvas</text>
+  <text x="495" y="470" font-family="Inter, -apple-system, sans-serif" font-size="14" font-weight="400" fill="#63636b" text-anchor="middle">Precision Image Editor</text>
+
+  <!-- Status bar -->
+  <rect x="0" y="606" width="1200" height="24" fill="#141416"/>
+  <line x1="0" y1="606" x2="1200" y2="606" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <circle cx="70" cy="618" r="2" fill="rgba(255,255,255,0.1)"/>
+  <circle cx="130" cy="618" r="2" fill="rgba(255,255,255,0.1)"/>
+  <circle cx="190" cy="618" r="2" fill="rgba(255,255,255,0.1)"/>
+</svg>
